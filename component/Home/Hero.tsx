@@ -1,4 +1,4 @@
-import React from "react";
+import Connect from "../Common/Connect";
 
 type Props = {};
 
@@ -10,6 +10,7 @@ const Hero = (props: Props) => {
         <p className="text-[64px] font-extrabold flex justify-center">
           Powering the Future of Business
         </p>
+        <Connect />
       </div>
     </section>
   );
