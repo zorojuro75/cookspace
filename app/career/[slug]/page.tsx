@@ -158,7 +158,7 @@ export default function JobPage() {
               {section.split("\n").map((line, lineIndex) => {
                 if (line.startsWith("###")) {
                   return (
-                    <h3 key={lineIndex} className="text-4xl font-bold mt-6 text-lg sm:text-xl">
+                    <h3 key={lineIndex} className="text-2xl font-bold mt-6 sm:text-xl">
                       {line.replace("###", "")}
                     </h3>
                   );
