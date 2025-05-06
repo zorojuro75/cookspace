@@ -2,11 +2,13 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const Openings = () => {
   const jobs = [
     {
       title: "Senior Frontend Developer",
+      slug: "senior-frontend-developer",
       location: "Remote",
       type: "Full-time",
       description:
@@ -14,6 +16,7 @@ const Openings = () => {
     },
     {
       title: "Backend Engineer",
+      slug: "backend-engineer",
       location: "Remote",
       type: "Full-time",
       description:
@@ -21,6 +24,7 @@ const Openings = () => {
     },
     {
       title: "Product Designer",
+      slug: "product-designer",
       location: "Remote",
       type: "Full-time",
       description:
@@ -62,12 +66,14 @@ const Openings = () => {
                     </p>
                     <p className="text-gray-300">{job.description}</p>
                   </div>
-                  <Button
-                    size="lg"
-                    className="rounded-full text-lg bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] hover:from-[#2657e0] hover:to-[#a540cd] px-8 py-6 mt-4 sm:mt-0"
-                  >
-                    Apply Now
-                  </Button>
+                  <Link href={`/career/${job.slug}`}>
+                    <Button
+                      size="lg"
+                      className="rounded-full text-lg bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] hover:from-[#2657e0] hover:to-[#a540cd] px-8 py-6 mt-4 sm:mt-0"
+                    >
+                      Apply Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
             </motion.div>
