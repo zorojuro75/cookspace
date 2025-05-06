@@ -7,16 +7,16 @@ import Link from "next/link";
 
 const AboutUs = () => {
   return (
-    <section className="bg-black text-white px-4 md:px-12 py-24">
-      <div className="max-w-[90rem] mx-auto flex flex-col md:flex-row gap-12 items-center">
+    <section className="bg-black text-white px-4 sm:px-6 md:px-12 py-20">
+      <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row gap-12 items-center">
         {/* Content Section */}
-        <div className="flex-1">
+        <div className="w-full lg:w-1/2">
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold mb-6 leading-snug"
+            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-snug"
           >
             From Food Delivery to Future Tech – Building the SaaS Ecosystem of
             Tomorrow
@@ -27,14 +27,14 @@ const AboutUs = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-lg text-gray-300 mb-6 leading-relaxed"
+            className="text-base sm:text-lg text-gray-300 mb-6 leading-relaxed"
           >
-            Cook Space started with a simple mission: help food entrepreneurs
-            thrive in the digital age. Today, we're building a comprehensive
-            SaaS ecosystem that powers every aspect of the modern food service
-            industry. Our cloud-based solutions integrate seamlessly, from
-            kitchen management to last-mile delivery, creating an efficient,
-            scalable platform for businesses of all sizes.
+            Cookspace Technologies Limited is a global tech company focused on
+            building future-ready platforms for food, delivery, and commerce. We
+            power brands like Munchies, and partner with founders to create
+            intelligent, scalable solutions that turn real-world challenges into
+            growth opportunities. From concept to launch, we engineer the future
+            of business.
           </motion.p>
 
           <motion.div
@@ -58,9 +58,9 @@ const AboutUs = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
           viewport={{ once: true }}
-          className="flex-1 flex justify-center items-center"
+          className="w-full lg:w-1/2 flex justify-center items-center"
         >
-          <div className="relative w-full max-w-md h-72 bg-[#0f0f0f] border-2 border-gray-700 rounded-md shadow-lg overflow-hidden">
+          <div className="relative w-full max-w-sm sm:max-w-md h-72 bg-[#0f0f0f] border-2 border-gray-700 rounded-md shadow-lg overflow-hidden">
             {/* Laptop screen header */}
             <div className="absolute top-0 w-full h-6 bg-[#1a1a1a] border-b border-gray-700 z-10"></div>
 
@@ -68,7 +68,7 @@ const AboutUs = () => {
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-white/5 to-transparent"></div>
 
             {/* Code block */}
-            <div className="relative z-10 p-6 pt-10 font-mono text-sm text-green-400 space-y-1">
+            <div className="relative z-10 p-4 pt-10 font-mono text-xs sm:text-sm text-green-400 space-y-1 overflow-auto h-full">
               <div>
                 <span className="text-purple-400">function</span>{" "}
                 <span className="text-blue-400">optimizeDelivery</span>(

@@ -1,11 +1,16 @@
-import React from 'react'
+import Contact from "@/component/Contact/Contact";
+import Hero from "@/component/Contact/Hero";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 const page = (props: Props) => {
   return (
-    <div>Contact page</div>
-  )
-}
+    <div>
+      <Hero />
+      <Contact />
+    </div>
+  );
+};
 
-export default page
+export default page;

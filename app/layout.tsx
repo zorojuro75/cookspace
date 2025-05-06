@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/component/Navbar/navbar";
+import Footer from "@/component/Footer/Footer";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -10,8 +11,8 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "Cook Space",
-  description: "Cook Space",
+  title: "Cookspace-technologies",
+  description: "Cookspace-technologies",
   icons: {
     icon: "/images/logo.png",
   },
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body className={`${poppins.variable} antialiased bg-black text-white`}>
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
