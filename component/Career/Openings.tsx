@@ -2,33 +2,18 @@
 
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 const Openings = () => {
   const jobs = [
     {
-      title: "Senior Frontend Developer",
-      slug: "senior-frontend-developer",
-      location: "Remote",
+      title: "Business Development Executive",
+      slug: "business-development-executive",
+      location: "Remote (Candidates must reside in Bangladesh)",
       type: "Full-time",
       description:
-        "Join our product team to build beautiful, responsive interfaces for our suite of applications.",
-    },
-    {
-      title: "Backend Engineer",
-      slug: "backend-engineer",
-      location: "Remote",
-      type: "Full-time",
-      description:
-        "Help us scale our infrastructure and build robust APIs to power our growing platform.",
-    },
-    {
-      title: "Product Designer",
-      slug: "product-designer",
-      location: "Remote",
-      type: "Full-time",
-      description:
-        "Create intuitive and delightful user experiences for our complex delivery applications.",
+        "As a Business Development Executive, you will be the key connection between Cookspace Technologies and our Munchies franchise partners in Bangladesh. Your role will be vital in helping new franchisees set up operations, understand our systems, and grow their business sustainably.",
     },
   ];
 
@@ -64,14 +49,14 @@ const Openings = () => {
                     <p className="text-gray-400">
                       {job.location} • {job.type}
                     </p>
-                    <p className="text-gray-300">{job.description}</p>
                   </div>
                   <Link href={`/career/${job.slug}`}>
                     <Button
                       size="lg"
-                      className="rounded-full text-lg bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] hover:from-[#2657e0] hover:to-[#a540cd] px-8 py-6 mt-4 sm:mt-0"
+                      className="rounded-full text-lg bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] hover:from-[#2657e0] hover:to-[#a540cd] px-8 py-6 mt-4 sm:mt-0 flex items-center gap-2"
                     >
                       Apply Now
+                      <ArrowRight className="w-5 h-5" />
                     </Button>
                   </Link>
                 </div>

@@ -36,17 +36,12 @@ const Contact = () => {
 
             <motion.div {...fadeInUp(0.4)} viewport={{ once: true }}>
               <h3 className="text-gray-400 font-semibold">Email</h3>
-              <p className="text-lg">hello@cookspace.com</p>
-            </motion.div>
-
-            <motion.div {...fadeInUp(0.5)} viewport={{ once: true }}>
-              <h3 className="text-gray-400 font-semibold">Phone</h3>
-              <p className="text-lg">+1 (555) 123-4567</p>
+              <p className="text-lg">fahim@cookspace.co</p>
             </motion.div>
 
             <motion.div {...fadeInUp(0.6)} viewport={{ once: true }}>
               <h3 className="text-gray-400 font-semibold">Location</h3>
-              <p className="text-lg">San Francisco, CA</p>
+              <p className="text-lg">Toronto, Ontario, Canada</p>
             </motion.div>
           </div>
 
