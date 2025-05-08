@@ -242,6 +242,10 @@ export default function JobPage() {
               <h2 className="text-2xl font-bold mb-2">Equal Opportunity</h2>
               <p>{job.equal_opportunity}</p>
             </section>
+            <section>
+              <h2 className="text-2xl font-bold mb-2">Submission Deadline</h2>
+              <p>{job.submission_deadline}</p>
+            </section>
             <section className="pt-6 text-center">
               <Button
                 onClick={() => setTab("apply")}
