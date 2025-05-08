@@ -18,7 +18,9 @@ const Footer = () => {
       >
         {/* Company Info */}
         <div className="flex flex-col gap-4 flex-1 items-start">
+          <Link href={'/'}>
           <Image src="/images/logo2.png" alt="logo" width={200} height={50} />
+          </Link>
           <p className="text-lg font-bold">fahim@cookspace.co</p>
         </div>
 

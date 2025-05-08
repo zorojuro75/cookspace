@@ -28,10 +28,16 @@ export interface JobPosting {
     description: string;
   };
   responsibilities: string[];
-  requirements: string[];
+  requirements: {
+    education: string[];
+    experience: string[];
+    skills: string[];
+    documenets_required?: string[];
+  };
   benefits: string[];
   how_to_apply: string;
   apply_now: string;
+  submission_deadline?: string;
   equal_opportunity: string;
   slug: string;
 }
@@ -67,13 +73,30 @@ const jobs: JobPosting[] = [
       "Monitor franchisee performance and provide ongoing business support.",
       "Coordinate with the central team to ensure smooth execution of campaigns, training, and marketing efforts.",
     ],
-    requirements: [
-      "Proven experience in business development, operations, or franchise management is highly preferred.",
-      "Strong communication, leadership, and problem-solving skills.",
-      "Ability to work independently and manage multiple stakeholders remotely.",
-      "Comfortable with digital tools, reporting, and coordination via online platforms.",
-      "Must be based in Bangladesh and fluent in Bangla and English.",
-    ],
+    requirements: {
+      education: [
+        "Minimum Bachelor's degree in Business Administration, Marketing, Management, or a related field.",
+        "MBA or relevant post-graduate qualification is a plus.",
+      ],
+      experience: [
+        "Minimum 2 years of experience in business development, franchise operations, client servicing, or a similar role.",
+        "Experience in a startup or tech-driven business is preferred.",
+      ],
+      skills: [
+        "Strong communication, leadership, and organizational skills.",
+        "Ability to work independently and manage multiple stakeholders remotely.",
+        "Proficiency in digital tools, online platforms, and business reporting.",
+        "Fluent in both Bangla and English.",
+      ],
+      documenets_required: [
+        "Updated CV/Resume",
+        "Scanned copies of educational certificates",
+        "Previous job experience documents (if available)",
+        "Copy of valid Passport",
+        "Current residential address",
+        "Any recent utility bill (electricity, gas, water, internet, etc.) that contains the applicant’s name",
+      ],
+    },
     benefits: [
       "A competitive monthly salary (800–1500 CAD depending on experience).",
       "Flexible, fully remote work environment.",
@@ -82,6 +105,7 @@ const jobs: JobPosting[] = [
     ],
     how_to_apply:
       "If you’re a proactive and capable professional ready to make an impact in a fast-paced, franchise-driven business, we want to hear from you!",
+    submission_deadline: "25/05/2025",
     apply_now: "Apply now",
     equal_opportunity:
       "Cookspace Technologies Limited is committed to building a diverse and inclusive team. We encourage individuals of all backgrounds to apply.",
@@ -169,11 +193,40 @@ export default function JobPage() {
 
             <section>
               <h2 className="text-2xl font-bold mb-2">Requirements</h2>
-              <ul className="list-disc list-inside">
-                {job.requirements.map((item, index) => (
-                  <li key={index}>{item}</li>
-                ))}
-              </ul>
+              <div className="mb-4 ms-4">
+                <h4 className="font-semibold text-xl">Educational Background</h4>
+                <ul className="list-disc list-inside">
+                  {job.requirements.education.map((item, index) => (
+                    <li key={`edu-${index}`}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mb-4 ms-4">
+                <h4 className="font-semibold text-xl">Experience</h4>
+                <ul className="list-disc list-inside">
+                  {job.requirements.experience.map((item, index) => (
+                    <li key={`exp-${index}`}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              <div className="mb-4 ms-4">
+                <h4 className="font-semibold text-xl">Skills</h4>
+                <ul className="list-disc list-inside">
+                  {job.requirements.skills.map((item, index) => (
+                    <li key={`skill-${index}`}>{item}</li>
+                  ))}
+                </ul>
+              </div>
+              {job.requirements.documenets_required && (
+                <div className="mb-4 ms-4">
+                  <h4 className="font-semibold text-xl">Documents Required (to be submitted during application or interview process):</h4>
+                  <ul className="list-disc list-inside">
+                    {job.requirements.documenets_required.map((item, index) => (
+                      <li key={`doc-${index}`}>{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </section>
 
             <section>

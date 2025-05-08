@@ -24,7 +24,9 @@ const Navbar = () => {
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-black/50 h-[100px]"
     >
       <div className="max-w-[90rem] mx-auto px-4 flex items-center justify-between h-full text-white">
+        <Link href={'/'}>
         <Image src="/images/logo2.png" alt="logo" width={200} height={50} />
+        </Link>
 
         {/* Desktop Menu */}
         <ul className="hidden md:flex space-x-8 font-medium justify-center items-center">
