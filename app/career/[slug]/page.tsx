@@ -230,7 +230,7 @@ export default function JobPage() {
             </section>
 
             <section>
-              <h2 className="text-2xl font-bold mb-2">Benefits</h2>
+              <h2 className="text-2xl font-bold mb-2">What We Offers</h2>
               <ul className="list-disc list-inside">
                 {job.benefits.map((item, index) => (
                   <li key={index}>{item}</li>
