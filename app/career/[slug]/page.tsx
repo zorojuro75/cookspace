@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Separator } from "@/components/ui/separator";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { notFound, useParams } from "next/navigation";
@@ -90,6 +91,7 @@ const jobs: JobPosting[] = [
 export default function JobPage() {
   const { slug } = useParams();
   const job = jobs.find((j) => j.slug === slug);
+  const [tab, setTab] = useState("details");
 
   const [form, setForm] = useState({
     name: "",
@@ -126,22 +128,22 @@ export default function JobPage() {
         )}
       </div>
 
-      <Tabs defaultValue="details" className="mt-6">
-        <TabsList className="w-full grid grid-cols-2">
+      <Tabs value={tab} onValueChange={(val) => setTab(val)} className="mt-6">
+        <TabsList className="grid grid-cols-2 gap-5 bg-transparent text-white">
           <TabsTrigger
             value="details"
-            className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
+            className="data-[state=active]:bg-black data-[state=active]:text-white text-white border-0 rounded-none"
           >
             Job Details
           </TabsTrigger>
           <TabsTrigger
             value="apply"
-            className="data-[state=active]:bg-blue-500 data-[state=active]:text-white"
+            className={`border-0 rounded-none bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] hover:from-[#2657e0] hover:to-[#a540cd] text-white font-semibold transition duration-300"`}
           >
-            Application
+            {tab === "apply" ? "Application" : "Apply Now"}
           </TabsTrigger>
         </TabsList>
-
+        <Separator />
         {/* Job Details Tab */}
         <TabsContent value="details">
           <div className="mt-8 space-y-6 text-gray-200">
@@ -187,12 +189,20 @@ export default function JobPage() {
               <h2 className="text-2xl font-bold mb-2">Equal Opportunity</h2>
               <p>{job.equal_opportunity}</p>
             </section>
+            <section className="pt-6 text-center">
+              <Button
+                onClick={() => setTab("apply")}
+                className="bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] hover:from-[#2657e0] hover:to-[#a540cd] rounded-full text-white font-semibold px-6 py-2 shadow-lg transition duration-300"
+              >
+                Apply Now
+              </Button>
+            </section>
           </div>
         </TabsContent>
 
         {/* Application Tab */}
         <TabsContent value="apply">
-          <div className="mt-8 border-t border-gray-700 pt-8">
+          <div className="mt-8 border-gray-700 pt-8">
             <h2 className="text-2xl font-bold mb-6">Apply for this position</h2>
             <p className="mb-4 text-gray-300">{job.how_to_apply}</p>
             <form
