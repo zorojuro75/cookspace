@@ -41,7 +41,13 @@ export interface JobPosting {
   equal_opportunity: string;
   slug: string;
 }
-
+type ApplicationForm = {
+  name: string;
+  email: string;
+  phone: string;
+  resume: File | null;
+  cover_letter: File | null;
+};
 const jobs: JobPosting[] = [
   {
     title: "Business Development Executive",
@@ -116,12 +122,14 @@ export default function JobPage() {
   const { slug } = useParams();
   const job = jobs.find((j) => j.slug === slug);
   const [tab, setTab] = useState("details");
+  const [loading, setLoading] = useState(false);
 
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<ApplicationForm>({
     name: "",
     email: "",
-    resume: "",
-    message: "",
+    phone: "",
+    resume: null,
+    cover_letter: null,
   });
 
   if (!job) return notFound();
@@ -132,9 +140,49 @@ export default function JobPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted", form);
+    setLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("id", job.slug);
+      formData.append("jobTitle", job.position.title);
+      formData.append("name", form.name);
+      formData.append("email", form.email);
+      formData.append("phone", form.phone);
+
+      if (form.resume) {
+        formData.append("resume", form.resume);
+      }
+      if (form.cover_letter) {
+        formData.append("cover_letter", form.cover_letter);
+      }
+
+      const response = await fetch("/api/recruitment", {
+        method: "POST",
+        body: formData, // FormData is sent here
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) throw new Error(data.error || "Failed to submit");
+
+      // Reset form
+      setForm({
+        name: "",
+        email: "",
+        phone: "",
+        resume: null,
+        cover_letter: null,
+      });
+      alert(`Application submitted! Reference: ${data.referenceNumber}`);
+    } catch (error) {
+      console.error("Submission failed:", error);
+      alert(error instanceof Error ? error.message : "Submission failed");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -194,7 +242,9 @@ export default function JobPage() {
             <section>
               <h2 className="text-2xl font-bold mb-2">Requirements</h2>
               <div className="mb-4 ms-4">
-                <h4 className="font-semibold text-xl">Educational Background</h4>
+                <h4 className="font-semibold text-xl">
+                  Educational Background
+                </h4>
                 <ul className="list-disc list-inside">
                   {job.requirements.education.map((item, index) => (
                     <li key={`edu-${index}`}>{item}</li>
@@ -219,7 +269,10 @@ export default function JobPage() {
               </div>
               {job.requirements.documenets_required && (
                 <div className="mb-4 ms-4">
-                  <h4 className="font-semibold text-xl">Documents Required (to be submitted during application or interview process):</h4>
+                  <h4 className="font-semibold text-xl">
+                    Documents Required (to be submitted during application or
+                    interview process):
+                  </h4>
                   <ul className="list-disc list-inside">
                     {job.requirements.documenets_required.map((item, index) => (
                       <li key={`doc-${index}`}>{item}</li>
@@ -259,55 +312,95 @@ export default function JobPage() {
 
         {/* Application Tab */}
         <TabsContent value="apply">
-          <div className="mt-8 border-gray-700 pt-8">
-            <h2 className="text-2xl font-bold mb-6">Apply for this position</h2>
-            <p className="mb-4 text-gray-300">{job.how_to_apply}</p>
+          <div className="mt-8 border-t border-gray-700 pt-8">
+            <h2 className="text-2xl font-semibold mb-4 text-white">
+              Apply for this position
+            </h2>
+            <p className="mb-6 text-gray-400">{job.how_to_apply}</p>
+
             <form
               onSubmit={handleSubmit}
-              className="space-y-4 bg-gray-800 p-6 rounded-lg"
+              className="space-y-6 bg-gray-900 p-6 rounded-xl shadow"
             >
-              <Input
-                className="bg-gray-700 text-white placeholder-gray-400"
-                name="name"
-                placeholder="Full Name"
-                value={form.name}
-                onChange={handleChange}
-                required
-              />
-              <Input
-                type="email"
-                name="email"
-                placeholder="Email Address"
-                className="bg-gray-700 text-white placeholder-gray-400"
-                value={form.email}
-                onChange={handleChange}
-                required
-              />
-              <Input
-                type="url"
-                name="resume"
-                placeholder="Resume Link (e.g. Google Drive)"
-                className="bg-gray-700 text-white placeholder-gray-400"
-                value={form.resume}
-                onChange={handleChange}
-                required
-              />
-              <Textarea
-                name="message"
-                placeholder="Cover Letter / Message"
-                className="bg-gray-700 text-white placeholder-gray-400"
-                value={form.message}
-                onChange={handleChange}
-                rows={5}
-              />
-              <Button
-                type="submit"
-                className="w-full bg-white text-black hover:bg-gray-200 transition"
-              >
-                Submit Application
+              <div className="space-y-2">
+                <label className="text-gray-300 text-sm">Full Name</label>
+                <Input
+                  name="name"
+                  placeholder="Your full name"
+                  className="bg-gray-800 text-white placeholder-gray-500"
+                  value={form.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-gray-300 text-sm">Email Address</label>
+                <Input
+                  type="email"
+                  name="email"
+                  placeholder="you@example.com"
+                  className="bg-gray-800 text-white placeholder-gray-500"
+                  value={form.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-gray-300 text-sm">Phone Number</label>
+                <Input
+                  type="tel"
+                  name="phone"
+                  placeholder="+1234567890"
+                  className="bg-gray-800 text-white placeholder-gray-500"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-gray-300 text-sm">
+                  Upload Resume (PDF only)
+                </label>
+                <Input
+                  type="file"
+                  name="resume"
+                  accept="application/pdf"
+                  className="bg-gray-800 text-white file:bg-gray-700 file:text-white"
+                  onChange={(e) =>
+                    setForm({ ...form, resume: e.target.files?.[0] || null })
+                  }
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="text-gray-300 text-sm">
+                  Upload Cover Letter (PDF/DOC/DOCX)
+                </label>
+                <Input
+                  type="file"
+                  name="cover_letter"
+                  accept=".pdf,.doc,.docx"
+                  className="bg-gray-800 text-white file:bg-gray-700 file:text-white"
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      cover_letter: e.target.files?.[0] || null,
+                    })
+                  }
+                  required
+                />
+              </div>
+
+              <Button type="submit" disabled={loading}>
+                {loading ? "Submitting..." : "Submit"}
               </Button>
             </form>
-            <p className="mt-4 text-gray-400 text-sm">{job.apply_now}</p>
+
+            <p className="mt-4 text-gray-500 text-sm">{job.apply_now}</p>
           </div>
         </TabsContent>
       </Tabs>
