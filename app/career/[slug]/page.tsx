@@ -121,7 +121,7 @@ const jobs: JobPosting[] = [
 export default function JobPage() {
   const { slug } = useParams();
   const job = jobs.find((j) => j.slug === slug);
-  const [tab, setTab] = useState("details");
+  const [tab, setTab] = useState("apply");
   const [loading, setLoading] = useState(false);
 
   const [form, setForm] = useState<ApplicationForm>({
@@ -318,57 +318,54 @@ export default function JobPage() {
             </h2>
             <p className="mb-6 text-gray-400">{job.how_to_apply}</p>
 
-            <form
-              onSubmit={handleSubmit}
-              className="space-y-6 bg-gray-900 p-6 rounded-xl shadow"
-            >
-              <div className="space-y-2">
-                <label className="text-gray-300 text-sm">Full Name</label>
+            <form onSubmit={handleSubmit} className="w-[500px]">
+              <div className="flex flex-col gap-2 mb-4">
+                <label className="text-red-500 text-sm">Full Name*</label>
                 <Input
                   name="name"
                   placeholder="Your full name"
-                  className="bg-gray-800 text-white placeholder-gray-500"
+                  className="border rounded-none"
                   value={form.name}
                   onChange={handleChange}
                   required
                 />
               </div>
 
-              <div className="space-y-2">
-                <label className="text-gray-300 text-sm">Email Address</label>
+              <div className="flex flex-col gap-2 mb-4">
+                <label className="text-red-500 text-sm">Email Address*</label>
                 <Input
                   type="email"
                   name="email"
                   placeholder="you@example.com"
-                  className="bg-gray-800 text-white placeholder-gray-500"
+                  className="border rounded-none"
                   value={form.email}
                   onChange={handleChange}
                   required
                 />
               </div>
 
-              <div className="space-y-2">
-                <label className="text-gray-300 text-sm">Phone Number</label>
+              <div className="flex flex-col gap-2 mb-4">
+                <label className="text-red-500 text-sm">Phone Number*</label>
                 <Input
                   type="tel"
                   name="phone"
                   placeholder="+1234567890"
-                  className="bg-gray-800 text-white placeholder-gray-500"
+                  className="border rounded-none"
                   value={form.phone}
                   onChange={handleChange}
                   required
                 />
               </div>
 
-              <div className="space-y-2">
-                <label className="text-gray-300 text-sm">
-                  Upload Resume (PDF only)
+              <div className="flex flex-col gap-2 mb-4">
+                <label className="text-red-500 text-sm">
+                  Upload Resume (PDF only)*
                 </label>
                 <Input
                   type="file"
                   name="resume"
                   accept="application/pdf"
-                  className="bg-gray-800 text-white file:bg-gray-700 file:text-white"
+                  className="border rounded-none file:text-white file:bg-transparent"
                   onChange={(e) =>
                     setForm({ ...form, resume: e.target.files?.[0] || null })
                   }
@@ -376,15 +373,15 @@ export default function JobPage() {
                 />
               </div>
 
-              <div className="space-y-2">
-                <label className="text-gray-300 text-sm">
-                  Upload Cover Letter (PDF/DOC/DOCX)
+              <div className="flex flex-col gap-2 mb-4">
+                <label className="text-red-500 text-sm">
+                  Upload Cover Letter (PDF/DOC/DOCX)*
                 </label>
                 <Input
                   type="file"
                   name="cover_letter"
                   accept=".pdf,.doc,.docx"
-                  className="bg-gray-800 text-white file:bg-gray-700 file:text-white"
+                  className="border rounded-none file:text-white file:bg-transparent"
                   onChange={(e) =>
                     setForm({
                       ...form,
@@ -395,12 +392,10 @@ export default function JobPage() {
                 />
               </div>
 
-              <Button type="submit" disabled={loading}>
+              <Button type="submit" disabled={loading} className="mt-4 w-full bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] hover:from-[#2657e0] hover:to-[#a540cd] rounded-full text-white font-semibold px-6 py-2 shadow-lg transition duration-300">
                 {loading ? "Submitting..." : "Submit"}
               </Button>
             </form>
-
-            <p className="mt-4 text-gray-500 text-sm">{job.apply_now}</p>
           </div>
         </TabsContent>
       </Tabs>
