@@ -47,6 +47,7 @@ type ApplicationForm = {
   phone: string;
   resume: File | null;
   cover_letter: File | null;
+  drive_link: string;
 };
 const jobs: JobPosting[] = [
   {
@@ -130,6 +131,7 @@ export default function JobPage() {
     phone: "",
     resume: null,
     cover_letter: null,
+    drive_link: "",
   });
 
   if (!job) return notFound();
@@ -151,6 +153,7 @@ export default function JobPage() {
       formData.append("name", form.name);
       formData.append("email", form.email);
       formData.append("phone", form.phone);
+      formData.append("drive_link", form.drive_link);
 
       if (form.resume) {
         formData.append("resume", form.resume);
@@ -175,6 +178,7 @@ export default function JobPage() {
         phone: "",
         resume: null,
         cover_letter: null,
+        drive_link: "",
       });
       alert(`Application submitted! Reference: ${data.referenceNumber}`);
     } catch (error) {
@@ -391,8 +395,30 @@ export default function JobPage() {
                   required
                 />
               </div>
+              <div className="flex flex-col gap-2 mb-4">
+                <label className="text-red-500 text-sm">
+                  Provide Drive Link*
+                </label>
+                <Input
+                  type="url"
+                  name="drive_link"
+                  placeholder="Google Drive link to your cover letter"
+                  className="border rounded-none file:text-white file:bg-transparent"
+                  onChange={(e) =>
+                    setForm({
+                      ...form,
+                      drive_link: e.target.value || "",
+                    })
+                  }
+                  required
+                />
+              </div>
 
-              <Button type="submit" disabled={loading} className="mt-4 w-full bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] hover:from-[#2657e0] hover:to-[#a540cd] rounded-full text-white font-semibold px-6 py-2 shadow-lg transition duration-300">
+              <Button
+                type="submit"
+                disabled={loading}
+                className="mt-4 w-full bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] hover:from-[#2657e0] hover:to-[#a540cd] rounded-full text-white font-semibold px-6 py-2 shadow-lg transition duration-300"
+              >
                 {loading ? "Submitting..." : "Submit"}
               </Button>
             </form>

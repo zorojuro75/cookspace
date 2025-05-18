@@ -24,6 +24,7 @@ export async function POST(req: NextRequest) {
     const referenceNumber = formData.get("id") as string;
     const resumeFile = formData.get("resume") as File;
     const coverLetterFile = formData.get("cover_letter") as File;
+    const driveLink = formData.get("drive_link") as string;
 
     // Read files into buffers
     const resumeBuffer = Buffer.from(await resumeFile.arrayBuffer());
@@ -62,6 +63,10 @@ export async function POST(req: NextRequest) {
             <tr>
               <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>Application ID:</strong></td>
               <td style="padding: 8px; border: 1px solid #e2e8f0;">${referenceNumber}</td>
+            </tr>
+            <tr>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;"><strong>Drive Link:</strong></td>
+              <td style="padding: 8px; border: 1px solid #e2e8f0;">${driveLink}</td>
             </tr>
           </table>
         </div>
