@@ -4,30 +4,28 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import Title from "../Common/Title";
+import Heading from "../Common/Heading";
 
 const AboutUs = () => {
   return (
-    <section className="bg-black text-white px-4 sm:px-6 md:px-12 py-20">
-      <div className="max-w-7xl mx-auto flex flex-col-reverse lg:flex-row gap-12 items-center">
+    <section className="bg-black text-white">
+      <div className="grid sm:grid-cols-2 max-w-7xl mx-auto gap-12">
         {/* Content Section */}
-        <div className="w-full lg:w-1/2">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 leading-snug"
-          >
-            From Food Delivery to Future Tech – Building the SaaS Ecosystem of
-            Tomorrow
-          </motion.h2>
+
+        <div className="flex flex-col gap-[20px]">
+          <Title title="About Us" />
+          <Heading
+            heading="From Food Delivery to Future Tech – Building the SaaS Ecosystem of
+            Tomorrow"
+          />
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
             viewport={{ once: true }}
-            className="text-base sm:text-lg text-gray-300 mb-6 leading-relaxed"
+            className="text-base sm:text-lg text-gray-300 leading-relaxed"
           >
             Cookspace Technologies Limited is a global tech company focused on
             building future-ready platforms for food, delivery, and commerce. We
@@ -58,11 +56,11 @@ const AboutUs = () => {
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
           viewport={{ once: true }}
-          className="w-full lg:w-1/2 flex justify-center items-center"
+          className="flex justify-center items-center"
         >
           <div className="relative w-full max-w-sm sm:max-w-md h-72 bg-[#0f0f0f] border-2 border-gray-700 rounded-md shadow-lg overflow-hidden">
             {/* Laptop screen header */}
-            <div className="absolute top-0 w-full h-6 bg-[#1a1a1a] border-b border-gray-700 z-10"></div>
+            <div className="absolute top-0 w-full h-6 bg-[#000] border-b border-gray-700 z-50"></div>
 
             {/* Gradient overlay */}
             <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-b from-white/5 to-transparent"></div>

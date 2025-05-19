@@ -1,35 +1,92 @@
-import React from "react";
+import { motion } from "framer-motion";
 
-type Props = {};
+const Mission = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        when: "beforeChildren",
+      },
+    },
+  };
 
-const Mission = (props: Props) => {
+  const textVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const blobVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: "backOut",
+      },
+    },
+    hover: {
+      scale: 1.05,
+      transition: { duration: 0.3 },
+    },
+  };
+
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center max-w-[90rem] mx-auto py-16 px-4 sm:px-8 md:px-10 gap-12 md:gap-20">
-      <div className="flex-1 text-center md:text-left">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold">
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={containerVariants}
+      className="flex flex-col md:flex-row items-center justify-center max-w-[90rem] mx-auto gap-12 md:gap-20 px-4 sm:px-8 md:px-10 py-16"
+    >
+      <motion.div
+        variants={textVariants}
+        className="flex-1 text-center md:text-left"
+      >
+        <motion.h2
+          className="text-4xl sm:text-5xl md:text-6xl font-bold"
+          whileHover={{ scale: 1.02 }}
+        >
           What We Do
-        </h2>
+        </motion.h2>
 
-        <p className="text-base sm:text-lg md:text-xl mt-5 font-medium">
+        <motion.p
+          className="text-base sm:text-lg md:text-xl mt-5 font-medium"
+          variants={textVariants}
+        >
           Cookspace Technologies creates innovative technology to turn ambitious
-          ideas into scalable businesses. They are expanding Munchies, an
+          ideas into scalable businesses. We are expanding Munchies, an
           AI-powered food delivery ecosystem, initially launched in Bangladesh,
           with plans for international growth in Europe and Canada. Munchies is
           offered as a fully managed app or white-label platform, helping
           entrepreneurs and franchisees run their own delivery businesses. In
-          addition to Munchies, Cookspace collaborates with local startups to
-          launch and scale digital products, including mobile apps and
-          full-stack systems, empowering businesses to grow{" "}
+          addition to Munchies, we collaborate with local startups to launch and
+          scale digital products, including mobile apps and full-stack systems,
+          empowering businesses to grow{" "}
           <span className="bg-gradient-to-r from-[#2657e0] to-[#a540cd] bg-clip-text text-transparent">
             faster and smarter
           </span>
           .
-        </p>
-      </div>
-      <div className="flex-1 flex items-center justify-center">
-        <div className="blob" />
-      </div>
-    </div>
+        </motion.p>
+      </motion.div>
+
+      <motion.div
+        variants={blobVariants}
+        whileHover="hover"
+        className="flex-1 flex items-center justify-center"
+      >
+        <div className="blob bg-gradient-to-r from-[#3866d1] to-[#8f4cdb] w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 rounded-full" />
+      </motion.div>
+    </motion.div>
   );
 };
 
