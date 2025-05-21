@@ -5,23 +5,28 @@ import { motion } from "framer-motion";
 import Title from "../Common/Title";
 import Heading from "../Common/Heading";
 import Heading2 from "../Common/Heading2";
+import { useRouter } from "next/navigation";
 
 const milestones = [
   {
     title: "Munchies Delivery",
     image: "/projects/project-1.png",
+    href: "/project/munchies-delivery",
   },
   {
     title: "Cookspace Delivery",
     image: "/projects/project-2.png",
+    href: "/project/cookspace-delivery",
   },
   {
     title: "Munchies Application",
     image: "/projects/project-3.png",
+    href: "/project/munchies-application",
   },
   {
     title: "Munchies Delivery",
     image: "/projects/project-4.png",
+    href: "/project/munchies-delivery",
   },
 ];
 
@@ -100,6 +105,7 @@ const Milestones = () => {
     };
   }, []);
 
+  const router = useRouter();
   return (
     <motion.div
       ref={containerRef}
@@ -149,6 +155,7 @@ const Milestones = () => {
             whileHover={{ scale: 1.02 }}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
+            onClick={() => router.push(item.href)}
           >
             <div className="relative w-full h-[484px]">
               <Image

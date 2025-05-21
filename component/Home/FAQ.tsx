@@ -105,7 +105,7 @@ const FAQ = (props: Props) => {
       <Accordion
         type="single"
         collapsible
-        className="w-full md:max-w-7xl flex flex-col gap-[16px] px-5 md:px-0"
+        className="w-full md:max-w-4xl flex flex-col gap-[16px] px-5 md:px-0"
       >
         {FAQData.map((item) => (
           <AccordionItem
