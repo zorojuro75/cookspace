@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-gray-300 py-12 px-6 md:px-20 border-t border-gray-700">
+    <footer className="bg-black text-gray-300 py-12 px-6 md:px-20 border-t border-gray-700 mt-6">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}

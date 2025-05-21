@@ -62,14 +62,12 @@ export default function Home() {
       >
         <Milestones />
       </motion.div>
-
       <motion.div
         variants={childVariants}
         viewport={{ once: true, margin: "-100px" }}
       >
         <AboutUs />
       </motion.div>
-
       <motion.div
         variants={childVariants}
         viewport={{ once: true, margin: "-100px" }}

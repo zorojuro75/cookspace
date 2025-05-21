@@ -46,7 +46,7 @@ const Mission = () => {
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
       variants={containerVariants}
-      className="flex flex-col md:flex-row items-center justify-center max-w-[90rem] mx-auto gap-12 md:gap-20 px-4 sm:px-8 md:px-10 py-16"
+      className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto gap-12 md:gap-20"
     >
       <motion.div
         variants={textVariants}
