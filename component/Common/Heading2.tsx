@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 
 type Props = {
   heading: string;
+  classname?: string;
 };
 
 const Heading2 = (props: Props) => {
@@ -12,7 +13,7 @@ const Heading2 = (props: Props) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true, margin: "-50px" }}
-      className="text-sm sm:text-base md:text-[18px] text-[#A8A8A8] text-center"
+      className={`text-sm sm:text-base md:text-[18px] text-[#A8A8A8] text-center ${props.classname}`}
     >
       {props.heading}
     </motion.h2>

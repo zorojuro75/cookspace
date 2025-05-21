@@ -6,9 +6,9 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
-import Title from "../Common/Title";
 import Heading from "../Common/Heading";
 import Heading2 from "../Common/Heading2";
+import Title from "../Common/Title";
 
 type Props = {};
 
@@ -111,12 +111,12 @@ const FAQ = (props: Props) => {
           <AccordionItem
             key={item.value}
             value={item.value}
-            className="border px-2 rounded-[20px]"
+            className="border px-2 rounded-[20px] bg-[#080808] border-gray-700"
           >
             <AccordionTrigger className="font-medium text-[18px] p-[18px]">
               {item.question}
             </AccordionTrigger>
-            <AccordionContent className="font-medium text-[18px] p-[18px]">
+            <AccordionContent className="font-light text-[18px] p-[18px] text-gray-300">
               {item.answer}
             </AccordionContent>
           </AccordionItem>
