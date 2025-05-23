@@ -36,7 +36,7 @@ export default function Home() {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="flex flex-col gap-y-12 sm:gap-y-16 md:gap-y-20 lg:gap-y-24 px-4 sm:px-6 md:px-8 lg:px-10 overflow-hidden"
+      className="flex flex-col gap-y-12 sm:gap-y-16 md:gap-y-20 lg:gap-y-24 px-4 sm:px-6 md:px-8 lg:px-0 overflow-hidden"
     >
       <motion.div variants={childVariants}>
         <Hero />
